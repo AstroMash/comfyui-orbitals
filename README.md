@@ -1,4 +1,4 @@
-# Orbitals for ComfyUI
+# 💫 Orbitals for ComfyUI
 
 A collection of custom nodes for ComfyUI workflows.
 
@@ -6,15 +6,13 @@ A collection of custom nodes for ComfyUI workflows.
 
 ### 🏷️ Taggregator
 
-A dynamic tag management node that allows you to organize your prompts into multiple categories with individual weights and enable/disable toggles.
+A dynamic tag management node that allows you to organize your prompts into multiple categories with individual enable/disable toggles.
 
 **Features:**
 
 - Organize prompts into labeled categories
-- Individual weight control per category (0.0 - 2.0)
 - Enable/disable categories on the fly
 - Clean, intuitive UI with add/remove functionality
-- Proper weight formatting for Stable Diffusion prompts
 
 **Usage:**
 
@@ -22,20 +20,21 @@ A dynamic tag management node that allows you to organize your prompts into mult
 2. The base prompt is always visible at the top
 3. Click "+ Add Category" to create new tag groups
 4. Enter a label for each category (e.g., "Style", "Lighting", "Details")
-5. Add your tags in the text area
-6. Adjust the weight slider (1.0 is neutral)
-7. Toggle the checkbox to enable/disable categories
-8. Remove categories with the × button
+5. Add your tags in the text area (natural language works too)
+6. Toggle the checkbox to enable/disable categories
+7. Remove categories with the × button
 
-**Output Format:**
-Enabled categories are combined with proper weighting:
-
-- Weight 1.0: tags appear as-is
-- Other weights: tags appear as `(tags:1.2)` format
-
-### 🌐 gcLatentTunnel
+### 🌐 Latent Garbage Collector
 
 Garbage collection "tunnel" node that forces memory cleanup after latent passes through it. Useful for managing VRAM in complex workflows.
+
+### 🔤 CLIP Encode (From String)
+
+Encodes text prompts directly from a string input. Useful for encoding strings from other nodes (like Taggregator) into conditioning.
+
+### 🎯 Select (Index)
+
+Deterministic, index-based selection from a user-defined list. Selects a value from a comma-separated list using a zero-based index. Returns the selected value, its index, and the original options string.
 
 ## Installation
 
@@ -62,3 +61,5 @@ Garbage collection "tunnel" node that forces memory cleanup after latent passes 
 3. Check browser console (F12) for JavaScript errors
 
 ## Development
+
+PRs and Issues are welcome. If you have ideas for new nodes or improvements, feel free to contribute!

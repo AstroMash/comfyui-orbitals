@@ -1,8 +1,7 @@
 import { app } from "../../../scripts/app.js";
 
-console.log("⦕ Orbitals ⦖ Taggregator extension loaded");
-
 // Helper function to properly hide widgets (enhanced for complete hiding)
+// Credit to the ComfyUI-SAM3 extension for this function
 function hideWidgetForGood(node, widget, suffix = "") {
   if (!widget) return;
 
