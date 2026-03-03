@@ -222,6 +222,26 @@ try:
 except ImportError as e:
     _failed.append(("🎯 Select (Index)", str(e)))
 
+try:
+    from .ultimate_tiler import NODE_CLASS_MAPPINGS as TILER_MAPPINGS
+    from .ultimate_tiler import NODE_DISPLAY_NAME_MAPPINGS as TILER_DISPLAY_MAPPINGS
+
+    NODE_CLASS_MAPPINGS.update(TILER_MAPPINGS)
+    NODE_DISPLAY_NAME_MAPPINGS.update(TILER_DISPLAY_MAPPINGS)
+    _loaded.append("🧩 Ultimate Tiler")
+except ImportError as e:
+    _failed.append(("🧩 Ultimate Tiler", str(e)))
+
+try:
+    from .ultimate_untiler import NODE_CLASS_MAPPINGS as UNTILER_MAPPINGS
+    from .ultimate_untiler import NODE_DISPLAY_NAME_MAPPINGS as UNTILER_DISPLAY_MAPPINGS
+
+    NODE_CLASS_MAPPINGS.update(UNTILER_MAPPINGS)
+    NODE_DISPLAY_NAME_MAPPINGS.update(UNTILER_DISPLAY_MAPPINGS)
+    _loaded.append("🧩 Ultimate Untiler")
+except ImportError as e:
+    _failed.append(("🧩 Ultimate Untiler", str(e)))
+
 WEB_DIRECTORY = "./web"
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "WEB_DIRECTORY"]
 
