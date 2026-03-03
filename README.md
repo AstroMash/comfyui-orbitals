@@ -36,6 +36,38 @@ Encodes text prompts directly from a string input. Useful for encoding strings f
 
 Deterministic, index-based selection from a user-defined list. Selects a value from a comma-separated list using a zero-based index. Returns the selected value, its index, and the original options string.
 
+### 🔲 Ultimate Tiler
+
+Splits an image into a batch of uniformly-sized tiles with optional overlap. Outputs the tile batch, a `TILE_PLAN` metadata object, a preview image, and upscaler resolution hints for use with upscalers like SeedVR2.
+
+**Strategies:**
+
+- `auto` — automatically picks tile size, overlap, and grid based on image size and a density setting (fewer/balanced/more tiles)
+- `uniform` — fixed tile size with configurable overlap; tiles are clamped to image bounds (no slivers)
+- `grid` — specify rows and columns; tile size is derived from the image dimensions
+- `padded` — pads the image so the grid divides cleanly; supports reflect, replicate, or constant padding
+
+**Upscale target outputs:**
+
+Set `upscale_mode` to compute per-tile resolution hints:
+
+- `scale` — multiply tile dimensions by `upscale_factor`
+- `fit to` — scale so the longest edge of the final image hits `upscale_target` pixels
+- `none` — outputs the raw tile size (passthrough)
+
+The `upscaler_resolution` and `upscaler_max_resolution` outputs wire directly to SeedVR2's `resolution` and `max_resolution` inputs.
+
+### 🧩 Ultimate Untiler
+
+Reassembles a batch of processed tiles back into a single image using weighted blending in overlap regions. Consumes the `TILE_PLAN` from Ultimate Tiler.
+
+**Upscale-aware:** if the incoming tiles are larger (or smaller) than the original plan's tile size, the untiler automatically detects the scale factor and produces the output at the correct resolution — no manual configuration needed.
+
+**Blend options:**
+
+- `blend_mode` — `cosine` (smooth), `linear`, or `none` (hard cut)
+- `blend_strength` — ramp length as a fraction of the overlap (0 = hard cut, 1 = full ramp)
+
 ## Installation
 
 1. Open a terminal and navigate to your ComfyUI `custom_nodes` directory and clone the Orbitals repository:
